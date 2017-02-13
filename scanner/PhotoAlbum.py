@@ -326,10 +326,10 @@ class Photo(object):
 		return correct_date
 
 	def __cmp__(self, other):
-		date_compare = cmp(self.date, other.date)
-		if date_compare == 0:
-			return cmp(self.name, other.name)
-		return date_compare
+#		date_compare = cmp(self.date, other.date)
+#		if date_compare == 0:
+		return cmp(self.name, other.name)
+#		return date_compare
 	@property
 	def attributes(self):
 		return self._attributes
