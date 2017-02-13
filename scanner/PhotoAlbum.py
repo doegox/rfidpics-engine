@@ -248,16 +248,26 @@ class Photo(object):
 				message("corrupt image", os.path.basename(original_path))
 				return
 		if square:
+#			if image.size[0] > image.size[1]:
+#				left = (image.size[0] - image.size[1]) / 2
+#				top = 0
+#				right = image.size[0] - ((image.size[0] - image.size[1]) / 2)
+#				bottom = image.size[1]
+#			else:
+#				left = 0
+#				top = (image.size[1] - image.size[0]) / 2
+#				right = image.size[0]
+#				bottom = image.size[1] - ((image.size[1] - image.size[0]) / 2)
 			if image.size[0] > image.size[1]:
-				left = (image.size[0] - image.size[1]) / 2
-				top = 0
-				right = image.size[0] - ((image.size[0] - image.size[1]) / 2)
-				bottom = image.size[1]
-			else:
 				left = 0
-				top = (image.size[1] - image.size[0]) / 2
+				top = -(image.size[0] - image.size[1]) / 2
 				right = image.size[0]
-				bottom = image.size[1] - ((image.size[1] - image.size[0]) / 2)
+				bottom = image.size[1] + ((image.size[0] - image.size[1]) / 2)
+			else:
+				left = -(image.size[1] - image.size[0]) / 2
+				top = 0
+				right = image.size[0] + ((image.size[1] - image.size[0]) / 2)
+				bottom = image.size[1]
 			image = image.crop((left, top, right, bottom))
 			gc.collect()
 		image.thumbnail((size, size), Image.ANTIALIAS)
