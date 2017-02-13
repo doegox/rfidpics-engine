@@ -39,7 +39,8 @@ class Album(object):
 			return self._photos[-1].date
 		return max(self._photos[-1].date, self._albums[-1].date)
 	def __cmp__(self, other):
-		return cmp(self.date, other.date)
+#		return cmp(self.date, other.date)
+		return cmp(self._path, other._path)
 	def add_photo(self, photo):
 		self._photos.append(photo)
 		self._photos_sorted = False
@@ -51,7 +52,7 @@ class Album(object):
 			self._photos.sort()
 			self._photos_sorted = True
 		if not self._albums_sorted:
-			self._albums.sort()
+			self._albums.sort(reverse=True)
 			self._albums_sorted = True
 	@property
 	def empty(self):
