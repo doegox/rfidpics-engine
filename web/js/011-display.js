@@ -200,6 +200,8 @@ $(document).ready(function() {
 		$("#original-link").attr("target", "_blank").attr("href", photoFloat.originalPhotoPath(currentAlbum, currentPhoto));
 
 		text = "<table>";
+		if (typeof currentPhoto.artist !== "undefined") text += "<tr><td>Artist</td><td>" + currentPhoto.artist + "</td></tr>";
+		if (typeof currentPhoto.copyright !== "undefined") text += "<tr><td>License</td><td>" + currentPhoto.copyright + "</td></tr>";
 		if (typeof currentPhoto.make !== "undefined") text += "<tr><td>Camera Maker</td><td>" + currentPhoto.make + "</td></tr>";
 		if (typeof currentPhoto.model !== "undefined") text += "<tr><td>Camera Model</td><td>" + currentPhoto.model + "</td></tr>";
 		if (typeof currentPhoto.date !== "undefined") text += "<tr><td>Time Taken</td><td>" + currentPhoto.date + "</td></tr>";

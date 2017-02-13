@@ -139,8 +139,10 @@ class Photo(object):
 		except KeyboardInterrupt:
 			raise
 		except:
+			print("\033[91m Warning: picture %s doesn't have any EXIF data \033[0m" % self.path)
 			return
 		if not info:
+			print("\033[91m Warning: picture %s doesn't have any EXIF data \033[0m" % self.path)
 			return
 		
 		exif = {}
@@ -159,6 +161,14 @@ class Photo(object):
 						continue
 			exif[decoded] = value
 		
+		if "Artist" in exif:
+			self._attributes["artist"] = exif["Artist"]
+		else:
+			print("\033[91m Warning: picture %s doesn't have any Artist in EXIF dat \033[0ma" % self.path)
+		if "Copyright" in exif:
+			self._attributes["copyright"] = exif["Copyright"]
+		else:
+			print("\033[91m Warning: picture %s doesn't have any Copyright in EXIF data \033[0m" % self.path)
 		if "Orientation" in exif:
 			self._orientation = exif["Orientation"];
 			if self._orientation in range(5, 9):
