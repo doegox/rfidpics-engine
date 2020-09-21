@@ -6,6 +6,7 @@ import os.path
 from PIL import Image
 from PIL.ExifTags import TAGS
 import gc
+import cgi
 
 class Album(object):
 	def __init__(self, path):
@@ -162,11 +163,11 @@ class Photo(object):
 			exif[decoded] = value
 		
 		if "Artist" in exif:
-			self._attributes["artist"] = exif["Artist"]
+			self._attributes["artist"] = cgi.escape(exif["Artist"]).encode('raw-unicode-escape') #s.decode('raw-unicode-escape')
 		else:
 			print("\033[91m Warning: picture %s doesn't have any Artist in EXIF dat \033[0ma" % self.path)
 		if "Copyright" in exif:
-			self._attributes["copyright"] = exif["Copyright"]
+			self._attributes["copyright"] = cgi.escape(exif["Copyright"]).encode('raw-unicode-escape')
 		else:
 			print("\033[91m Warning: picture %s doesn't have any Copyright in EXIF data \033[0m" % self.path)
 		if "Orientation" in exif:
