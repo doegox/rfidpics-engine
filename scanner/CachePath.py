@@ -25,7 +25,7 @@ def trim_base_custom(path, base):
 def trim_base(path):
 	return trim_base_custom(path, trim_base.base)
 def cache_base(path):
-	path = trim_base(path).replace('/', '-').replace(' ', '_').replace('(', '').replace('&', '').replace(',', '').replace(')', '').replace('#', '').replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace('_-_', '-').lower()
+	path = trim_base(path).replace('/', '-').replace(' ', '_').replace('(', '').replace('&', '').replace(',', '').replace(')', '').replace('#', '').replace('[', '').replace(']', '').replace('"', '').replace("'", '').replace('_-_', '-').lower().decode('utf8').encode('ascii','ignore')
 	while path.find("--") != -1:
 		path = path.replace("--", "-")
 	while path.find("__") != -1:
